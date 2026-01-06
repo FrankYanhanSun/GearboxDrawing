@@ -1,0 +1,1581 @@
+\documentclass{article}
+\usepackage{geometry}
+
+\geometry{letterpaper,left=2cm,right=2cm,top=3cm,bottom=2cm}
+\usepackage{ctex}
+\usepackage[english]{babel}
+% \usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{ulem}
+\usepackage{setspace}
+\newcommand{\ulinecontent}[2]{\underline{\makebox[#1][c]{#2}}}
+
+\begin{document}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\begin{titlepage}
+    \centering
+    \onehalfspacing % 1.5倍行距
+
+    % ----------------------------------------------------
+    % 顶部：学校名称
+    % ----------------------------------------------------
+    \vspace*{0.5cm}
+    
+    % 使用 \zihao{1} 设置一号字 (约26pt)
+    % 这里的 \cdot 是中间的点，也可以直接用中文输入法打出
+    {\zihao{1} \heiti * \ \ * \ \ 大 \ \ 学}
+    
+    \vspace{2cm}
+
+    % ----------------------------------------------------
+    % 标题：机械设计项目计算说明书
+    % ----------------------------------------------------
+    % 使用 \zihao{-0} 设置小初号字 (约36pt)
+    {\zihao{-0} \heiti 机械设计项目计算说明书}
+
+    \vspace{3cm}
+
+    % ----------------------------------------------------
+    % 中间信息栏
+    % ----------------------------------------------------
+    % 使用表格来对齐标签和下划线
+    % l 为左对齐(或居中)，r 为右对齐
+    
+    {\zihao{3} \songti % 设置字号为三号
+        \renewcommand{\arraystretch}{2.0} % 增加表格行高
+        
+        \begin{tabular}{r @{：} l}
+            % \makebox[4.5em][s]{...} 用于强制文字两端对齐(分散对齐)
+            
+            \textbf{题目 (中文)} & \ulinecontent{260pt}{二级展开式齿轮减速器结构设计} \\
+            
+            \textbf{\makebox[4.5em][s]{姓名}} & \ulinecontent{260pt}{***} \\
+            
+            \textbf{\makebox[4.5em][s]{学号}} & \ulinecontent{260pt}{***} \\
+            
+            \textbf{院 \quad (系)} & \ulinecontent{260pt}{***} \\
+            
+            \textbf{\makebox[4.5em][s]{专业}} & \ulinecontent{260pt}{***} \\
+            
+            \textbf{指导教师} & \ulinecontent{260pt}{***} \\
+        \end{tabular}
+    }
+
+    \vfill % 自动填充垂直空间，把日期推到底部
+
+    % ----------------------------------------------------
+    % 底部：日期
+    % ----------------------------------------------------
+    {\zihao{3} \songti 二〇**年 * 月}
+    
+    \vspace{2cm}
+
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{传动方案}
+\subsection{已确定方案：设计带式运输机的展开式二级圆柱齿轮减速器}
+
+\subsection{传动简图}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{传动简图.png}
+    \caption{带式运输机的展开式二级圆柱齿轮减速器的传动简图}
+    \label{fig:传动简图}
+\end{figure}
+
+\subsection{已知}
+
+（1）运输带工作拉力$F = 5250 \text{N}$；
+
+（2）运输带工作速度 $v = 0.85 \text{m/s}$ (运输带速度允许误差$±5\%$)；
+
+（3）滚筒直径$D = 410 \text{mm}$；
+
+（4）滚筒效率$\eta_w = 0.96$（包括滚筒与轴承的效率损失）；
+
+（5）工作情况: 两班制，连续单向运转，载荷平稳；
+
+（6）要求传动使用寿命为10年。
+
+%提示：请参考“机械设计教程”第1章1.4节，需给出电动机主要参数表、电动机安装及有关尺寸主要参数表、各轴的运动和动力参数表。
+
+\section{电动机的选择}
+\subsection{确定电动机功率}
+工作主轴所需功率 $P_w$：
+\begin{equation}
+    P_w = \frac{Fv}{1000} = P_w = \frac{5250 \times 0.85}{1000} = 4.46 \text{kW}
+\end{equation}
+
+图片\ref{fig:传动简图}中传动装置包括：V带、三对滚动轴承、两对圆柱齿轮、一个联轴器，总效率为 $\eta = \eta_{\text{V带}} \times \eta_{\text{滚动轴承}}^3 \times \eta_{\text{圆柱齿轮}}^2 \times \eta_{\text{联轴器}} \times \eta_w$。根据表1.3，$\eta_{\text{V带}} = 0.95, \eta_{\text{滚动轴承}} = 0.98, \eta_{\text{圆柱齿轮}} = 0.98, \eta_{\text{联轴器}} = 0.99$。可以得到：
+\begin{equation}
+    \eta = \eta_{\text{V带}} \times \eta_{\text{滚动轴承}}^3 \times \eta_{\text{圆柱齿轮}}^2 \times \eta_{\text{联轴器}} \times \eta_w = 0.95 \times 0.98^3 \times 0.98^2 \times 0.99 \times 0.96 = 0.83
+\end{equation}
+
+电动机所需功率$P_d$:
+\begin{equation}
+    P_d = \frac{P_w}{\eta} = \frac{4.46}{0.83} = 5.37 \text{kW}
+\end{equation}
+
+考虑到在各零部件设计时需要有一定的工况系数，取电动机的工况系数为1.3，则电动机的额定功率$P_{ed}$：
+\begin{equation}
+    P_{ed} \ge  k_A P_d = 1.3 \times 5.37 = 6.98 \text{kW}
+\end{equation}
+根据附表K.1，选取电动机额定功率$P_{ed} = 7.5 \text{kW}$
+
+\subsection{确定电动机转速}
+工作机主轴转速 $n_w$：
+\begin{equation}
+    n_w = \frac{60 \times 1000 \times v}{\pi D} = \frac{60 \times 1000 \times 0.85}{\pi \times 410} = 39.59 \text{r/min}
+\end{equation}
+
+根据工作机主轴转速 $n_w$ 及有关机械传动的常用传动比范围(见表 1.2), 取普通 V 带的传动比 $i_带 = 2\textasciitilde{}4$, 二级圆柱齿轮传动比 $i_1 = i_2 = 3\textasciitilde{}6$, 可计算电动机转速的合理范围为 $n_d = n_w i_1 i_2 i_3 = 39.59 \times (2\textasciitilde{}4) \times (3\textasciitilde{}6) \times (3\textasciitilde{}6) \text{r/min} = 712.62\textasciitilde{}5700.96 \text{r/min}$。
+
+根据附表 K.1, 符合这一范围的电动机同步转速有 $750 \text{r/min}$、1000 \text{r/min}$、1500 \text{r/min}$ 和 $3000 \text{r/min}$ 4 种, 现选用同步转速 $1500 \text{r/min}$, 满载转速 $n_m = 1440 \text{ r/min}$ 的电动机, 查得其主要参数和安装尺寸如表\ref{tab:电动机主要参数}和表\ref{tab:电动机安装及有关尺寸主要参数}所示。
+
+\begin{table}[h]
+\centering
+\caption{电动机主要参数}
+\label{tab:电动机主要参数}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+型号 & 额定功率 & 同步转速 & 满载转速 & 堵转转矩/额定转矩 & 最大转矩/额定转矩 \\
+\hline
+Y132M-4 & 7.5kW & 1500r/min & 1440r/min & 2.2 & 2.2 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{电动机安装及有关尺寸主要参数 \ \ mm}
+\label{tab:电动机安装及有关尺寸主要参数}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{中心高} & 外形尺寸 & 地脚安装 & 地脚螺栓 & 轴伸尺寸 & 键公称尺寸 \\
+ & $L \times (AC/2 + AD) \times HD$ & 尺寸 $A \times B$ & 直径 $K$ & $D \times E$ & $F \times h$ \\
+\hline
+132 & $515 \times 345 \times 315$ & $216 \times 178$ & 12 & $38 \times 80$ & $10 \times 8$ \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{传动装置总传动比的计算及各级传动比的分配}
+传动装置总传动比$i$:
+\begin{equation}
+    i = \frac{n_m}{n_w} = \frac{1440}{39.59} = 36.37
+\end{equation}
+取$i_{\text{V带}} = 2.6$， 那么$i_1 i_2 = i / i_{\text{V带}} = 13.98$，查表1.7得：一级齿轮传动比$i_1 = 4.5$，二级齿轮传动比$i_2 = 3.15$，误差为$e = |3.15 \times 4.5 \times 2.6 - 36.37| / 36.37 = 1.3\% $，误差控制在$±(3\textasciitilde{}5)\%$以内。
+
+\subsection{传动装置运动和动力参数计算}
+
+\subsubsection{计算各轴输入功率}
+v带轴功率 $P_d = 5.37 \text{ kW}$
+
+齿轮轴I功率 $P_I = P_d \eta_{\text{v带}} = 5.37 \times 0.95 \text{ kW} = 5.10 \text{ kW}$
+
+齿轮轴II功率 $P_{II} = P_I \eta_{\text{滚动轴承}} \eta_{\text{圆柱齿轮}} = 5.10 \times 0.98^2 \text{ kW} = 4.90 \text{ kW}$
+
+齿轮轴III功率 $P_{III} = P_{II} \eta_{\text{滚动轴承}} \eta_{\text{圆柱齿轮}} = 4.90 \times 0.98^2 \text{ kW} = 4.71 \text{ kW}$
+
+\subsubsection{计算各轴转速}
+v带轴转速 $n_d = n_m = 1440 \text{ r/min}$
+
+齿轮轴I转速 $n_I = \frac{n_d}{i_{\text{v带}}} = \frac{1440}{2.6} = 553.85 \text{ r/min}$
+
+齿轮轴II转速 $n_{II} = \frac{n_I}{i_1} = \frac{553.85}{4.5} = 123.08 \text{ r/min}$
+
+齿轮轴III转速 $n_{III} = \frac{n_{II}}{i_2} = \frac{123.08}{3.15} = 39.07 \text{ r/min}$
+
+\subsubsection{计算各轴转矩}
+v带轴转矩 $T_d = 9550\frac{P_d}{n_d} = 9550 \times \frac{5.37}{1440} = 35.61 \text{ N} \cdot \text{m}$
+
+齿轮轴I转矩 $T_I = 9550\frac{P_I}{n_I} = 9550 \times \frac{5.1015}{553.85} = 87.97 \text{ N} \cdot \text{m}$
+
+齿轮轴II转矩 $T_{II} = 9550\frac{P_{II}}{n_{II}} = 9550 \times \frac{4.8995}{123.08} = 380.17 \text{ N} \cdot \text{m}$
+
+齿轮轴III转矩 $T_{III} = 9550\frac{P_{III}}{n_{III}} = 9550 \times \frac{4.7055}{39.07} = 1150.14 \text{ N} \cdot \text{m}$
+
+\section{带传动设计}
+
+\subsection{已知}
+（1）电动机功率$P=5.37kW$
+
+（2）电动机转速$n_{1}=1440r/min$
+
+（3）减速箱高速轴转速$n_{2}=553.85r/min$
+
+\subsection{功率计算}
+根据载荷性质和每天运转时间, 根据表5.6确定工作情况系数 $K_{A}=1.2$
+\begin{equation}
+P_{ca}=K_{A}P_{d}=1.2\times5.37=6.44(kW)
+\end{equation}
+
+\subsection{带型选择}
+根据 $P_{ca}$ 与 $n_{d}$, 由图5.8确定选用B型普通V带。
+
+\subsection{确定带轮基准直径}
+由表5.2取小带轮基准直径 $D_{1}=132mm$。 根据式(5.24), 计算从动轮基准直径 $D_{2}$
+\begin{equation}
+D_{2}=iD_{1}=2.6\times132=343.2(mm)
+\end{equation}
+根据表5.4, 取 $D_{2}=355~mm$。
+按式(5.23)验算带的速度
+\begin{equation}
+v=\frac{\pi D_{1}n_{1}}{60\times1000}=\frac{\pi\times132\times1440}{60\times1000}=9.95(m/s)<30(m/s)
+\end{equation}
+带的速度合适。
+
+\subsection{确定V带的基准长度和传动中心距}
+根据 $0.7(D_{1}+D_{2})<a_0<2(D_{1}+D_{2})$, 初选中心距 $a_{0}=600mm$。 根据式(5.25), 带长约为 $L_{d}^{\prime}=
+a_{0}+\frac{\pi}{2}(D_{1}+D_{2})+\frac{(D_{2}-D_{1})^{2}}{4a_{0}}=1985.7mm$。
+
+由表5.3选带的基准长度 $L_{d}=2000mm$。 按式(5.26)计算实际中心距a为
+\begin{equation}
+a=a_{0}+\frac{L_{d}-L_{d}^{\prime}}{2}=607.15mm
+\end{equation}
+
+\subsection{验算主动轮上的包角 $\alpha_{1}$}
+由式(5.29)得
+\begin{equation}
+\alpha_{1}=180^{\circ}-\frac{D_{2}-D_{1}}{a}\times60^{\circ}=180^{\circ}-\frac{355-132}{607.15}\times60^{\circ}=157.96^{\circ}>120^{\circ}
+\end{equation}
+小带轮上包角合适。
+
+\subsection{计算V带的根数z}
+由 $n_{1}=1440r/min$, $D_{1}=132mm$, $i=2.6$, 查表5.7(a)和表5.7(b)得 $P_{0}=2.5kW$, $\Delta P_{0}=0.46kW$, 查表5.8得 $K_{\alpha}=0.95$, 查表5.9得 $K_{L}=0.98$, 则由式(5.30)得
+\begin{equation}
+z=\frac{P_{ca}}{(P_{0}+\Delta P_{0})K_{\alpha}K_{L}}=\frac{6.44}{(2.5+0.46)\times0.95\times0.98}=2.3
+\end{equation}
+取 $z=3$ 根。
+
+\subsection{计算预紧力 $F_{0}$}
+查表5.1得 $q=0.17kg/m$, 由式(5.32)得
+\begin{equation}
+F_{0}=500\frac{P_{ca}}{vz}(\frac{2.5}{K_{\alpha}}-1)+qv^{2}=500 \times \frac{6.44}{9.95 \times 3}(\frac{2.5}{0.95}-1)+0.17\times9.95^{2} = 192.83(N)
+\end{equation}
+
+\subsection{计算作用在轴上的压轴力 $F_{Q}$}
+由式(5.33)得
+\begin{equation}
+F_{Q}=2z F_{0} \sin\frac{\alpha_{1}}{2}=2\times3\times192.83 \times \sin\frac{157.96^{\circ}}{2}=1135.65(N)
+\end{equation}
+
+\subsection{其他}
+V带轮采用HT200制造, 允许最大圆周速度为 $25~m/s$。
+
+
+\section{齿轮设计}
+
+\subsection{高速齿轮设计}
+\subsubsection{选择齿轮类型、材料、精度及参数}
+(1)大小齿轮都选用硬齿面。 选大、小齿轮的材料均为45钢,并经调质后表面淬火,齿面硬度均为45HRC。
+
+(2)选取等级精度。初选7级精度 (GB/T T10095.1-2022)。
+
+(3)选小齿轮齿数 $z_{1}=24$, 大齿轮齿数 $z_{2} = i_1 z_1 =  4.5 \times 24 = 108$, 取 $z_{2}=108$。
+
+(4)初选螺旋角 $\beta=15^{\circ}$。
+
+\subsubsection{按齿面接触疲劳强度设计}
+按齿面接触疲劳强度设计
+考虑到闭式硬齿面齿轮传动失效形式可能是点蚀,也可能为疲劳折断,故按接触疲劳强度设计后,按齿根弯曲强度校核 。
+
+按设计计算公式(7.28)进行试算,有
+\begin{equation}d_{1}=\sqrt[3]{\frac{2KT_{1}}{\phi_{d}\epsilon_{a}}\cdot\frac{i\pm1}{i}(\frac{Z_{H}Z_{E}}{[\sigma_{H}]})^{2}} \end{equation}
+
+下面确定公式内的各计算数值 。
+
+(1)载荷系数K: 试选 $K=1.5$ 。
+
+(2)小齿轮传递的转矩: $T_{1}=87.97N \cdot m=87970N \cdot mm$ 。
+
+(3)齿宽系数 $\phi_{d}$: 由表7.7选取 $\phi_{d}=1$ 。
+
+(4)弹性影响系数 $Z_{E}$: 由表7.8查得 $Z_{E}=189.8MPa^{1/2}$ 。
+
+(5)节点区域系数 $Z_{H}$: 因为 $Z_{H}=\sqrt{\frac{2\cos\beta_{b}}{\sin\alpha_{t}\cos\alpha_{t}}}$ ，由$\tan\alpha_{t}=\frac{\tan\alpha_{n}}{\cos\beta}$ 和 $\tan\beta_{b}=\tan\beta\cos\alpha_{t}$ 得:
+
+\begin{equation}a_{t}=\arctan(\frac{\tan a_{n}}{\cos\beta})=\arctan(\frac{\tan 20^{\circ}}{\cos 15^{\circ}})=20.65^{\circ} \end{equation}
+
+\begin{equation}\beta_{b}=\arctan(\tan\beta \cos a_{t})=\arctan(\tan 15^{\circ} \cos 20.65^{\circ})=14.08^{\circ} \end{equation}
+
+\begin{equation}Z_{H}=\sqrt{\frac{2 \cos 14.08^{\circ}}{\sin 20.65^{\circ} \cos 20.65^{\circ}}}=2.425 \end{equation}
+
+(6)按《机械原理》给出端面重合度 $\epsilon_{a}$ :
+
+\begin{equation}\epsilon_{a}=\frac{z_{1}(\tan a_{at1}-\tan a_{t})+z_{2}(\tan a_{at2}-\tan a_{t})}{2\pi} \end{equation}
+
+\begin{equation}a_{at1}=\arccos(\frac{z_{1}\cos a_{t}}{z_{1}+2h_{an}^{*}\cos\beta})=\arccos(\frac{24\times \cos 20.65^{\circ}}{24+2\times 1\times \cos 15^{\circ}})=30.00^{\circ} \end{equation}
+
+\begin{equation}a_{at2}=\arccos(\frac{z_{2}\cos a_{t}}{z_{2}+2h_{an}^{*}\cos\beta})=\arccos(\frac{108\times \cos 20.65^{\circ}}{108+2\times 1\times \cos 15^{\circ}})=23.18^{\circ} \end{equation}
+
+代入上式得
+
+\begin{equation}\epsilon_{a}=\frac{24\times(\tan 30.00^{\circ}-\tan 20.65^{\circ})+108\times(\tan 23.18^{\circ}-\tan 20.65^{\circ})}{2\pi}=1.650 \end{equation}
+
+(7)接触疲劳强度极限 $\sigma_{Hlim}$: 由表7.3按齿面硬度查得 $\sigma_{Hlim1}=\sigma_{Hlim2}=1000MPa$ 。
+
+(8)应力循环次数:
+
+\begin{equation}N_{1}=60n_{1}jL_{h}=60\times 553.85\times 1\times(2\times 8\times 300\times 10)=1.6\times 10^{9} \end{equation}
+
+\begin{equation}N_{2}=\frac{N_{1}}{i_{2}}=\frac{1.6\times 10^{9}}{4.5}=3.556\times 10^{8} \end{equation}
+
+(9)接触疲劳寿命系数 $K_{HN}$: 由图7.3查得 $K_{HN1}=0.9$, $K_{HN2}=0.95$ 。
+
+(10)接触疲劳许用应力 $[\sigma_{H}]$: 取失效概率为1\%, 安全系数$S_H=1$
+
+\begin{equation}[\sigma_{H}]_{1}=K_{HN1}\sigma_{Hlim1}/S_{H}=0.9\times 1000/1=900MPa \end{equation}
+
+\begin{equation}[\sigma_{H}]_{2}=K_{HN2}\sigma_{Hlim2}/S_{H}=0.95\times 1000/1=950MPa \end{equation}
+
+故取 $[\sigma_{H}]= \frac{[\sigma_{H}]_{1} + [\sigma_{H}]_{2}}{2} = 925MPa$ 。
+
+\subsubsection{计算}
+(1)计算小齿轮分度圆直径 $d_{1t}$ 。
+
+\begin{equation}d_{1t} \ge \sqrt[3]{\frac{2K_{t}T_{1}}{\phi_{d}\epsilon_{a}}\cdot\frac{i+1}{i}(\frac{Z_{H}Z_{E}}{[\sigma_{H}]})^{2}}=\sqrt[3]{\frac{2\times 1.5\times 87970}{1\times 1.650}\times\frac{4.5+1}{4.5}\times(\frac{2.425\times 189.8}{925})^{2}}=42.76 mm \end{equation}
+
+(2)计算圆周速度 $v$ :
+
+\begin{equation}v=\frac{\pi d_{1t}n_{1}}{60\times 1000}=\frac{\pi\times 42.76\times 553.85}{60000}=1.24 m/s \end{equation}
+
+(3)计算齿宽 $b$ :
+
+\begin{equation}b=\phi_{d}d_{1t}=1\times 42.76=42.76 mm \end{equation}
+
+(4)计算齿宽与齿高之比 $b/h$ 。
+
+\begin{equation}b/h = \phi_{d}d_{1t}/(2.25m_{n}) = \phi_{d}(m_{n}z_{1}/\cos\beta)/(2.25m_{n}) = \phi_{d}z_{1}/(2.25\cos\beta) = 1\times 24/(2.25\times \cos 15^{\circ})=11.02 \end{equation}
+
+(5)计算载荷系数 $K$ :
+
+根据 $v=1.24 m/s$, 7级精度, 由图7.5查得动载系数 $K_{v}=1.04$; 由表7.5查得 $K_{a}=1.2$; 由表7.4 查得使用系数 $K_{A}=1$; 由表7.6查得 $K_{H\beta}=1.0 + 0.31(1 + 0.6\phi^2_d)\phi^2_d+0.19\times10^{-3}b = 1.50$; 由图7.6查得齿向载荷分布系数$K_{F\beta} = 1.48$; 载荷系数为
+
+\begin{equation}K=K_{A}K_{v}K_{a}K_{H\beta}=1.0\times 1.04\times 1.2\times 1.50=1.872 \end{equation}
+
+(6)按实际的载荷系数修正分度圆直径 。
+
+\begin{equation}d_{1}=d_{1t}\sqrt[3]{\frac{K}{K_{t}}}=42.76\times\sqrt[3]{\frac{1.872}{1.5}}=46.04 mm \end{equation}
+
+(7)计算模数 $m_{n}$ 。
+
+\begin{equation}m_{n}=\frac{d_{1}\cos\beta}{z_{1}}=\frac{46.04\times \cos 15^{\circ}}{24}=1.853 mm \end{equation}
+
+按表7.10取 $m_{n}=2mm$ 。
+
+\subsubsection{按齿根弯曲疲劳强度校核}
+校核公式为(7.29) :
+
+\begin{equation}\sigma_{F}=\frac{2KT_{1}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{1}^{2}m_{n}^{3}}Y_{Fa}Y_{Sa}\le[\sigma_{F}] \end{equation}
+
+公式中的各参数确定如下 。
+
+(1)载荷系数 $K$ :
+
+前面已查得 $K_{A}=1$, $K_{v}=1.04$, $K_{a}=1.2$, $K_{F\beta}=1.48$, 则有
+
+\begin{equation}K=K_{A}K_{v}K_{a}K_{F\beta}=1\times 1.04\times 1.2\times 1.48=1.85 \end{equation}
+
+(2)齿形系数 $Y_{Fa}$ 和应力校正系数 $Y_{Sa}$ :
+
+小齿轮当量齿数 $z_{v1}=z_{1}/\cos^{3}\beta=\frac{24}{\cos^{3}15^{\circ}}=\frac{24}{0.9012}=26.63$，大齿轮当量齿数 $z_{v2}=z_{2}/\cos^{3}\beta=\frac{108}{\cos^{3}15^{\circ}}=\frac{108}{0.9012}=119.84$
+
+查表 7.9, $Y_{Fa1}=2.57$, $Y_{Sa1}=1.60$, $Y_{Fa2}=2.18$, $Y_{Sa2}=1.79$ 。
+
+(3)螺旋角影响系数 $Y_{\beta}$ :
+
+轴面重合度 $\epsilon_{\beta}=0.318\phi_{d}z_{1}\tan\beta=0.318\times 1\times 24\times \tan 15^{\circ}=2.045$，取 $\epsilon_{\beta}=1$, 则
+
+\begin{equation}Y_{\beta}=1-\epsilon_{\beta}\times\frac{\beta}{120^{\circ}}=1-1\times\frac{15}{120}=0.875 \end{equation}
+
+(4)许用弯曲应力 $[\sigma_{F}]$ :
+
+查图7.4得 $K_{FN1}=0.85$, $K_{FN2}=0.87$;
+
+查表7.2得 $\sigma_{Flim1}=500MPa$, $\sigma_{Flim2}=500MPa$ 。
+
+取安全系数 $S_{F}=1.4,$ 则
+
+\begin{equation}[\sigma_{F}]_{1}=K_{FN1}\sigma_{Flim1}/S_{F}=0.85\times 500/1.4=304MPa \end{equation}
+
+\begin{equation}[\sigma_{F}]_{2}=K_{FN2}\sigma_{Flim2}/S_{F}=0.87\times 500/1.4=311MPa \end{equation}
+
+(5)校核:
+
+小齿轮
+
+\begin{equation} \begin{aligned} \sigma_{F1} &= \frac{2KT_{1}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{1}^{2}m_{n}^{3}}Y_{Fa1}Y_{Sa1} \\ &= \frac{2\times 1.85\times 87970\times 0.875\times \cos^{2}\beta}{1\times 1.65\times 24^{2}\times 2^{3}}\times 2.57\times 1.60=143.71 \le [\sigma_{F}]_{1} \end{aligned} \end{equation}
+
+大齿轮
+
+\begin{equation} \begin{aligned} \sigma_{F2} &= \frac{2KT_{2}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{2}^{2}m_{n}^{3}}Y_{Fa2}Y_{Sa2} \\ &= \frac{2\times 1.85\times 380170\times 0.875\times \cos^{2}\beta}{1\times 1.65\times 108^{2}\times 2^{3}}\times 2.18\times 1.79=27.64 \le [\sigma_{F}]_{2} \end{aligned} \end{equation}
+
+大小齿轮齿根弯曲疲劳强度均满足 。
+
+由上述结果可见齿轮传动的弯曲强度有相当大的余量，故通常是按接触强度设计，确定方案后，需弯曲强度校核，这样计算比较简单。也可分别按两种强度设计，分析对比，确定方案，这样有时可以得到较优的解。
+
+\subsubsection{齿轮传动几何尺寸计算}
+(1)中心距: $a=m_{n}(z_{1}+z_{2})/(2\cos\beta)=2\times(24+108)/(2\cos 15^{\circ})=136.7mm$。 取 $a=137mm$ 。
+
+(2)修正螺旋角: $\beta=\arccos[m_{n}(z_{1}+z_{2})/(2a)]=\arccos[2\times(24+108)/(2\times 137)]=15.53^{\circ}$ 。
+
+(3)分度圆直径 :
+
+\begin{equation}d_{1}=m_{n}z_{1}/\cos\beta=2\times 24/\cos 15.53^{\circ}=49.82mm \end{equation}
+
+\begin{equation}d_{2}=m_{n}z_{2}/\cos\beta=2\times 108/\cos 15.53^{\circ}=224.18mm \end{equation}
+
+(4)齿宽 :
+
+\begin{equation}b=\phi_{d}d_{1}=1\times 49.82=49.82mm \end{equation}
+取 $B_{2}=50mm$, $B_{1}=B_{2}+5=55mm$ 。
+
+具体设计参数如表所示 。
+
+\subsubsection{结果}
+\begin{table}[h]
+\centering
+\caption{高速级齿轮}
+\label{tab:gear_parameters1}
+\begin{tabular}{|l|l|l|}
+\hline
+名称 & 代 号 & 计算公式与结果 \\ \hline
+法向模数 & $m_{n}$ & 2mm \\ \hline
+端面模数 & $m_{t}$ & $m_{t}=\frac{m_{n}}{\cos\beta}=2.08mm$ \\ \hline
+螺旋角 & $\beta$ & $15.53^{\circ}$ \\ \hline
+法向压力角 & $\alpha_{n}$ & $20^{\circ}$ \\ \hline
+端面压力角 & $\alpha_{t}$ & $\alpha_{t}=\arctan(\frac{\tan\alpha_{n}}{\cos\beta})=20.70^{\circ}$ \\ \hline
+分度圆直径 & $d_{1}, d_{2}$ & $49.82mm, 224.18mm$ \\ \hline
+齿顶高 & $h_{a}$ & 2mm \\ \hline
+齿根高 & $h_{f}$ & 2.5mm \\ \hline
+全齿高 & $h$ & 4.5mm \\ \hline
+顶隙 & $c$ & 0.5mm \\ \hline
+齿顶圆直径 & $d_{a1}, d_{a2}$ & $53.82mm, 228.18mm$ \\ \hline
+齿根圆直径 & $d_{f1}, d_{f2}$ & $44.82mm, 219.18mm$ \\ \hline
+中心距 & $a$ & 137mm \\ \hline
+传动比 & $i$ & 4.5 \\ \hline
+齿数 & $z_{1}, z_{2}$ & 24, 108 \\ \hline
+齿宽 & $b_{1}, b_{2}$ & 55mm, 50mm \\ \hline
+螺旋方向 & & 小齿轮右旋, 大齿轮左旋 \\ \hline
+大齿轮轮毂宽 & $B_{2}$ & 55mm \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{低速齿轮设计}
+\subsubsection{选择齿轮类型、材料、精度及参数}
+(1)大小齿轮都选用硬齿面。 选大、小齿轮的材料均为45钢,并经调质后表面淬火,齿面硬度均为45HRC。
+
+(2)选取等级精度。初选7级精度 (GB/T T10095.1-2022)。
+
+(3)选小齿轮齿数 $z_{1}=24$, 大齿轮齿数 $z_{2} = i_2 z_1 =  3.15 \times 24 = 75.6$, 取 $z_{2}=76$。
+
+(4)初选螺旋角 $\beta=15^{\circ}$。
+
+\subsubsection{按齿面接触疲劳强度设计}
+按齿面接触疲劳强度设计
+考虑到闭式硬齿面齿轮传动失效形式可能是点蚀,也可能为疲劳折断,故按接触疲劳强度设计后,按齿根弯曲强度校核 。
+
+按设计计算公式(7.28)进行试算,有
+\begin{equation}d_{1}=\sqrt[3]{\frac{2KT_{1}}{\phi_{d}\epsilon_{a}}\cdot\frac{i\pm1}{i}(\frac{Z_{H}Z_{E}}{[\sigma_{H}]})^{2}} \end{equation}
+
+下面确定公式内的各计算数值 。
+
+(1)载荷系数K: 试选 $K=1.5$ 。
+
+(2)小齿轮传递的转矩: $T_{2}=380.17N \cdot m=380170N \cdot mm$ 。
+
+(3)齿宽系数 $\phi_{d}$: 由表7.7选取 $\phi_{d}=1$ 。
+
+(4)弹性影响系数 $Z_{E}$: 由表7.8查得 $Z_{E}=189.8MPa^{1/2}$ 。
+
+(5)节点区域系数 $Z_{H}$: 因为 $Z_{H}=\sqrt{\frac{2\cos\beta_{b}}{\sin\alpha_{t}\cos\alpha_{t}}}$ ，由$\tan\alpha_{t}=\frac{\tan\alpha_{n}}{\cos\beta}$ 和 $\tan\beta_{b}=\tan\beta\cos\alpha_{t}$ 得:
+
+\begin{equation}a_{t}=\arctan(\frac{\tan a_{n}}{\cos\beta})=\arctan(\frac{\tan 20^{\circ}}{\cos 15^{\circ}})=20.65^{\circ} \end{equation}
+
+\begin{equation}\beta_{b}=\arctan(\tan\beta \cos a_{t})=\arctan(\tan 15^{\circ} \cos 20.65^{\circ})=14.08^{\circ} \end{equation}
+
+\begin{equation}Z_{H}=\sqrt{\frac{2 \cos 14.08^{\circ}}{\sin 20.65^{\circ} \cos 20.65^{\circ}}}=2.425 \end{equation}
+
+(6)按《机械原理》给出端面重合度 $\epsilon_{a}$ :
+
+\begin{equation}\epsilon_{a}=\frac{z_{1}(\tan a_{at1}-\tan a_{t})+z_{2}(\tan a_{at2}-\tan a_{t})}{2\pi} \end{equation}
+
+\begin{equation}a_{at1}=\arccos(\frac{z_{1}\cos a_{t}}{z_{1}+2h_{an}^{*}\cos\beta})=\arccos(\frac{24\times \cos 20.65^{\circ}}{24+2\times 1\times \cos 15^{\circ}})=30.00^{\circ} \end{equation}
+
+\begin{equation}a_{at2}=\arccos(\frac{z_{2}\cos a_{t}}{z_{2}+2h_{an}^{*}\cos\beta})=\arccos(\frac{76\times \cos 20.65^{\circ}}{76+2\times 1\times \cos 15^{\circ}})=24.14^{\circ} \end{equation}
+
+代入上式得
+
+\begin{equation}\epsilon_{a}=\frac{24\times(\tan 30.00^{\circ}-\tan 20.65^{\circ})+76\times(\tan 24.14^{\circ}-\tan 20.65^{\circ})}{2\pi}=1.63 \end{equation}
+
+(7)接触疲劳强度极限 $\sigma_{Hlim}$: 由表7.3按齿面硬度查得 $\sigma_{Hlim1}=\sigma_{Hlim2}=1000MPa$ 。
+
+(8)应力循环次数:
+
+\begin{equation}N_{1}=60n_{2}jL_{h}=60\times 123.08\times 1\times(2\times 8\times 300\times 10)=3.5\times 10^{8} \end{equation}
+
+\begin{equation}N_{2}=\frac{N_{1}}{i_{2}}=\frac{3.5\times 10^{8}}{3.15}=1.125\times 10^{8} \end{equation}
+
+(9)接触疲劳寿命系数 $K_{HN}$: 由图7.3查得 $K_{HN1}=0.95$, $K_{HN2}=0.97$ 。
+
+(10)接触疲劳许用应力 $[\sigma_{H}]$: 取失效概率为1\%, 安全系数$S_H=1$
+
+\begin{equation}[\sigma_{H}]_{1}=K_{HN1}\sigma_{Hlim1}/S_{H}=0.95\times 1000/1=950MPa \end{equation}
+
+\begin{equation}[\sigma_{H}]_{2}=K_{HN2}\sigma_{Hlim2}/S_{H}=0.97\times 1000/1=970MPa \end{equation}
+
+故取 $[\sigma_{H}]= \frac{[\sigma_{H}]_{1} + [\sigma_{H}]_{2}}{2} = 960MPa$ 。
+
+\subsubsection{计算}
+(1)计算小齿轮分度圆直径 $d_{1t}$ 。
+
+\begin{equation}d_{1t} \ge \sqrt[3]{\frac{2K_{t}T_{2}}{\phi_{d}\epsilon_{a}}\cdot\frac{i+1}{i}(\frac{Z_{H}Z_{E}}{[\sigma_{H}]})^{2}}=\sqrt[3]{\frac{2\times 1.5\times 380170}{1\times 1.63}\times\frac{3.15+1}{3.15}\times(\frac{2.425\times 189.8}{960})^{2}}=59.26 mm \end{equation}
+
+(2)计算圆周速度 $v$ :
+
+\begin{equation}v=\frac{\pi d_{1t}n_{2}}{60\times 1000}=\frac{\pi\times 59.26\times 123.08}{60000}=0.382 m/s \end{equation}
+
+(3)计算齿宽 $b$ :
+
+\begin{equation}b=\phi_{d}d_{1t}=1\times 59.26=59.26 mm \end{equation}
+
+(4)计算齿宽与齿高之比 $b/h$ 。
+
+\begin{equation}b/h = \phi_{d}d_{1t}/(2.25m_{n}) = \phi_{d}(m_{n}z_{1}/\cos\beta)/(2.25m_{n}) = \phi_{d}z_{1}/(2.25\cos\beta) = 1\times 24/(2.25\times \cos 15^{\circ})=11.02 \end{equation}
+
+(5)计算载荷系数 $K$ :
+
+根据 $v=0.382 m/s$, 7级精度, 由图7.5查得动载系数 $K_{v}=1.02$; 由表7.5查得 $K_{a}=1.2$; 由表7.4 查得使用系数 $K_{A}=1$; 由表7.6查得 $K_{H\beta}=1.0 + 0.31(1 + 0.6\phi^2_d)\phi^2_d+0.19\times10^{-3}b = 1.51$; 由图7.6查得齿向载荷分布系数$K_{F\beta} = 1.48$; 载荷系数为
+
+\begin{equation}K=K_{A}K_{v}K_{a}K_{H\beta}=1.0\times 1.02\times 1.2\times 1.51=1.848 \end{equation}
+
+(6)按实际的载荷系数修正分度圆直径 。
+
+\begin{equation}d_{1}=d_{1t}\sqrt[3]{\frac{K}{K_{t}}}=59.26\times\sqrt[3]{\frac{1.848}{1.5}}=63.53 mm \end{equation}
+
+(7)计算模数 $m_{n}$ 。
+
+\begin{equation}m_{n}=\frac{d_{1}\cos\beta}{z_{1}}=\frac{63.53\times \cos 15^{\circ}}{24}=2.56 mm \end{equation}
+
+按表7.10取 $m_{n}=3mm$ 。
+
+\subsubsection{按齿根弯曲疲劳强度校核}
+校核公式为(7.29) :
+
+\begin{equation}\sigma_{F}=\frac{2KT_{1}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{1}^{2}m_{n}^{3}}Y_{Fa}Y_{Sa}\le[\sigma_{F}] \end{equation}
+
+公式中的各参数确定如下 。
+
+(1)载荷系数 $K$ :
+
+前面已查得 $K_{A}=1$, $K_{v}=1.02$, $K_{a}=1.2$, $K_{F\beta}=1.51$, 则有
+
+\begin{equation}K=K_{A}K_{v}K_{a}K_{F\beta}=1\times 1.02\times 1.2\times 1.51=1.85 \end{equation}
+
+(2)齿形系数 $Y_{Fa}$ 和应力校正系数 $Y_{Sa}$ :
+
+小齿轮当量齿数 $z_{v1}=z_{1}/\cos^{3}\beta=\frac{24}{\cos^{3}15^{\circ}}=\frac{24}{0.9012}=26.63$，大齿轮当量齿数 $z_{v2}=z_{2}/\cos^{3}\beta=\frac{76}{\cos^{3}15^{\circ}}=\frac{76}{0.9012}=84.33$
+
+查表 7.9, $Y_{Fa1}=2.57$, $Y_{Sa1}=1.60$, $Y_{Fa2}=2.20$, $Y_{Sa2}=1.78$ 。
+
+(3)螺旋角影响系数 $Y_{\beta}$ :
+
+轴面重合度 $\epsilon_{\beta}=0.318\phi_{d}z_{1}\tan\beta=0.318\times 1\times 24\times \tan 15^{\circ}=2.045$，取 $\epsilon_{\beta}=1$, 则
+
+\begin{equation}Y_{\beta}=1-\epsilon_{\beta}\times\frac{\beta}{120^{\circ}}=1-1\times\frac{15}{120}=0.875 \end{equation}
+
+(4)许用弯曲应力 $[\sigma_{F}]$ :
+
+查图7.4得 $K_{FN1}=0.88$, $K_{FN2}=0.91$;
+
+查表7.2得 $\sigma_{Flim1}=500MPa$, $\sigma_{Flim2}=500MPa$ 。
+
+取安全系数 $S_{F}=1.4,$ 则
+
+\begin{equation}[\sigma_{F}]_{1}=K_{FN1}\sigma_{Flim1}/S_{F}=0.88\times 500/1.4=314MPa \end{equation}
+
+\begin{equation}[\sigma_{F}]_{2}=K_{FN2}\sigma_{Flim2}/S_{F}=0.91\times 500/1.4=325MPa \end{equation}
+
+(5)校核:
+
+小齿轮
+
+\begin{equation} \begin{aligned} \sigma_{F1} &= \frac{2KT_{1}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{1}^{2}m_{n}^{3}}Y_{Fa1}Y_{Sa1} \\ &= \frac{2\times 1.85\times 380170\times 0.875\times \cos^{2}\beta}{1\times 1.63\times 24^{2}\times 3^{3}}\times 2.57\times 1.60=186.27 \le [\sigma_{F}]_{1} \end{aligned} \end{equation}
+
+大齿轮
+
+\begin{equation} \begin{aligned} \sigma_{F2} &= \frac{2KT_{2}Y_{\beta}\cos^{2}\beta}{\phi_{d}\epsilon_{a}z_{2}^{2}m_{n}^{3}}Y_{Fa2}Y_{Sa2} \\ &= \frac{2\times 1.85\times 1150140\times 0.875\times \cos^{2}\beta}{1\times 1.63\times 76^{2}\times 3^{3}}\times 2.20\times 1.78=53.52 \le [\sigma_{F}]_{2} \end{aligned} \end{equation}
+
+大小齿轮齿根弯曲疲劳强度均满足 。
+
+由上述结果可见齿轮传动的弯曲强度有相当大的余量，故通常是按接触强度设计，确定方案后，需弯曲强度校核，这样计算比较简单。也可分别按两种强度设计，分析对比，确定方案，这样有时可以得到较优的解。
+
+\subsubsection{齿轮传动几何尺寸计算}
+(1)中心距: $a=m_{n}(z_{1}+z_{2})/(2\cos\beta)=3\times(24+76)/(2\cos 15^{\circ})=155.29mm$。 取 $a=156mm$ 。
+
+(2)修正螺旋角: $\beta=\arccos[m_{n}(z_{1}+z_{2})/(2a)]=\arccos[3\times(24+76)/(2\times 156)]=15.59^{\circ}$ 。
+
+(3)分度圆直径 :
+
+\begin{equation}d_{1}=m_{n}z_{1}/\cos\beta=3\times 24/\cos 15.59^{\circ}=74.75mm \end{equation}
+
+\begin{equation}d_{2}=m_{n}z_{2}/\cos\beta=3\times 76/\cos 15.59^{\circ}=236.72mm \end{equation}
+
+(4)齿宽 :
+
+\begin{equation}b=\phi_{d}d_{1}=1\times 74.75=74.75mm \end{equation}
+取 $B_{2}=75mm$, $B_{1}=B_{2}+5=80mm$ 。
+
+具体设计参数如表所示 。
+
+
+\subsubsection{结果}
+\begin{table}[h]
+\centering
+\caption{低速级齿轮}
+\label{tab:gear_parameters2}
+\begin{tabular}{|l|l|l|}
+\hline
+名称 & 代 号 & 计算公式与结果 \\ \hline
+法向模数 & $m_{n}$ & 3mm \\ \hline
+端面模数 & $m_{t}$ & $m_{t}=\frac{m_{n}}{\cos\beta}=3.11mm$ \\ \hline
+螺旋角 & $\beta$ & $15.59^{\circ}$ \\ \hline
+法向压力角 & $\alpha_{n}$ & $20^{\circ}$ \\ \hline
+端面压力角 & $\alpha_{t}$ & $\alpha_{t}=\arctan(\frac{\tan\alpha_{n}}{\cos\beta})=20.71^{\circ}$ \\ \hline
+分度圆直径 & $d_{1}, d_{2}$ & $74.75mm, 236.72mm$ \\ \hline
+齿顶高 & $h_{a}$ & 3mm \\ \hline
+齿根高 & $h_{f}$ & 3.75mm \\ \hline
+全齿高 & $h$ & 6.75mm \\ \hline
+顶隙 & $c$ & 0.75mm \\ \hline
+齿顶圆直径 & $d_{a1}, d_{a2}$ & $80.75mm, 242.72mm$ \\ \hline
+齿根圆直径 & $d_{f1}, d_{f2}$ & $67.25mm, 229.22mm$ \\ \hline
+中心距 & $a$ & 156mm \\ \hline
+传动比 & $i$ & 3.15 \\ \hline
+齿数 & $z_{1}, z_{2}$ & 24, 76 \\ \hline
+齿宽 & $b_{1}, b_{2}$ & 80mm, 75mm \\ \hline
+螺旋方向 & & 小齿轮右旋, 大齿轮左旋 \\ \hline
+大齿轮轮毂宽 & $B_{2}$ & 80mm \\ \hline
+\end{tabular}
+\end{table}
+
+\section{轴设计}
+\subsection{中间轴结构设计}
+
+\subsubsection{选择轴材料}
+选用 45 钢，调质，硬度为 230HBS。
+
+\subsubsection{初步估算中间轴最小直径}
+根据式 (9.1) 及表 9.2，取 $A=110$，则：
+\begin{equation}
+d \ge A\sqrt[3]{\frac{P}{n}} = 110 \times \sqrt[3]{\frac{4.9}{123.08}} = 48.36\,\mathrm{mm}
+\end{equation}
+因为中间轴两端弯矩和转矩均为零，也没有键槽，所以可选其最小直径 $d=55\,\mathrm{mm}$。
+
+\subsubsection{中间轴尺寸}
+考虑轴的结构及轴的刚度，取装滚动轴承处轴径 $d=60\,\mathrm{mm}$，根据轴的直径初选滚动轴承，选定圆锥滚子轴承。由轴径 $d=60\,\mathrm{mm}$ 选定滚动轴承 30212 正装布置。查附表 H.1 可得，滚动轴承宽度 $T^{\prime}=23.75\,\mathrm{mm}$， $B^{\prime}=22\,\mathrm{mm}$， $a^{\prime}=22.40\,\mathrm{mm}$。
+
+由齿轮设计可知，高速级大齿轮轮毂宽 $B_{2}=55\,\mathrm{mm}$，低速级小齿轮宽 $B_{3}=80\,\mathrm{mm}$，选两齿轮端面间距 $\Delta=10\,\mathrm{mm}$，齿轮端面到箱内壁距离 $\Delta_{1}=12\,\mathrm{mm}$，滚动轴承端面到箱内壁距离 $\Delta_{2}=10\,\mathrm{mm}$，则箱内壁宽为：
+\begin{equation}
+b_{\text{内}} = B_{2} + B_{3} + \Delta + 2\Delta_{1} = 55 + 80 + 10 + 24 = 169\,\mathrm{mm}
+\end{equation}
+
+中间轴总长为：
+\begin{equation}
+L_{\text{中}} = b_{\text{内}} + 2\Delta_{2} + 2T^{\prime} = 169 + 20 + 47.5 = 236.5\,\mathrm{mm}
+\end{equation}
+
+% 具体结构和装配关系如图 9.18 和图 9.19 所示。
+
+% \begin{figure}[htbp]
+%   \centering
+%   \framebox{\parbox{0.8\textwidth}{\centering
+%     \vspace{2cm}
+%     \textbf{图 9.18 / 9.19 占位符} \\
+%     \small\textit{中间轴具体结构和装配关系示意图}
+%     \vspace{2cm}
+%   }}
+%   \caption{中间轴结构与装配示意图}
+% \end{figure}
+
+\subsection{高速轴结构设计}
+
+\subsubsection{选择轴材料}
+选用 45 钢，调质，硬度为 230HBS。
+
+\subsubsection{初步估算高速轴最小直径}
+根据式 (9.1) 及表 9.2，取 $A=110$，则：
+\begin{equation}
+d \ge A\sqrt[3]{\frac{P}{n}} = 110 \times \sqrt[3]{\frac{5.1}{553.85}} = 23.06\,\mathrm{mm}
+\end{equation}
+
+\subsubsection{高速轴尺寸}
+考虑带轮需要键槽等结构要求，以及轴的刚度，取装带轮处轴径 $d=35\,\mathrm{mm}$，取密封处的直径 $d=40\,\mathrm{mm}$，那么滚动轴承处轴径 $d=45\,\mathrm{mm}$。根据轴的直径初选滚动轴承，选定圆锥滚子轴承。由轴颈 $d=45\,\mathrm{mm}$ 选用滚动轴承 30209，正装布置。查附表 H.1 可得，滚动轴承 $T=20.75\,\mathrm{mm}$， $B=19\,\mathrm{mm}$， $a=18.60\,\mathrm{mm}$。
+
+按滚动轴承 30209 结构，安装尺寸 $d_{a}=52\,\mathrm{mm}$。高速齿轮的齿顶圆直径 $d_1=53.82\,\mathrm{mm}$，齿根圆直径为 $d_{f1}=44.82\,\mathrm{mm}$。因此，选带退刀槽结构的齿轮轴，退刀槽直径为 44mm。
+
+选带轮侧端面距端盖螺钉的距离为 $l_{3}=20\,\mathrm{mm}$；端盖螺钉为 M8，对应的螺钉头高度为 $k=5.3\,\mathrm{mm}$；轴承端盖厚度 $t=10\,\mathrm{mm}$；并由前面已知带轮宽度 $B_{3}=80\,\mathrm{mm}$，可得高速轴各轴段长为：
+
+伸出段：
+\begin{equation}
+S = B_3 + l_3 + k + t = 80 + 20 + 5.3 + 10 = 115.3\,\mathrm{mm}
+\end{equation}
+圆整为 $116\,\mathrm{mm}$，即取 $l_{3}=20.7\,\mathrm{mm}$。
+
+取滚动轴承端面到箱内壁的距离 $\Delta_{2}=10\,\mathrm{mm}$，则另一未伸出端在箱体凸缘内的长度为：
+\begin{equation}
+l_{4} = T + \Delta_{2} = 20.75 + 10 = 30.75\,\mathrm{mm}
+\end{equation}
+
+高速轴总长为：
+\begin{equation}
+L_{\text{高}} = S + h_1 + b_{\text{内}} + l_{4} = 116 + 55 + 169 + 30.75 = 370.75\,\mathrm{mm}
+\end{equation}
+
+% 高速轴的结构和装配关系见图 9.20 和图 9.21。
+
+% \begin{figure}[htbp]
+%   \centering
+%   \framebox{\parbox{0.8\textwidth}{\centering
+%     \vspace{2cm}
+%     \textbf{图 9.20 / 9.21 占位符} \\
+%     \small\textit{高速轴结构和装配关系示意图}
+%     \vspace{2cm}
+%   }}
+%   \caption{高速轴结构与装配示意图}
+% \end{figure}
+
+\subsection{低速轴结构设计}
+\subsubsection{选择轴材料}
+选用 45 钢，调质，硬度为 230HBS。
+
+\subsubsection{初步估算低速轴最小直径}
+根据式 (9.1) 及表 9.2，取 $A=110$，则：
+\begin{equation}
+d \ge A\sqrt[3]{\frac{P}{n}} = 110 \times \sqrt[3]{\frac{4.71}{39.07}} = 54.34\,\mathrm{mm}
+\end{equation}
+
+\subsubsection{低速轴尺寸}
+考虑联轴器孔径$d1=65mm$，取长度略短于半联轴器长度$l1=140mm$。
+ 
+为满足半联轴器轴向定位，设计轴肩，第二段直径$d2=70mm$。
+
+由于受到径向力和轴向力，应装配角接触球轴承。选择30215型轴承，轴径$d = 75 mm$，宽度$B = 25mm$因此$d3=d7=75mm$。
+
+取挡油环宽度$s3=22mm$，则$l3=B+s3+2=25+22+2=49mm$。
+ 
+轴承挡油环应进行轴向固定，应设置定位轴肩
+ 因此，取$d6=80mm$。
+ 
+取安装齿轮处的轴的直径$d4=80mm$。已知低速级大齿轮齿宽$b=80mm$，取该段轴长$l4=78mm$。
+
+齿轮左端采用轴肩固定，取$d5=90mm$，$l5=10mm$。
+
+取轴承端盖厚度$e=10mm$。为了便于轴承端盖拆卸，端盖外端面距外部传动部件$K=24mm$。
+\begin{equation}
+l2=L+e+K-B-s=57+10+24-25-10=58mm
+\end{equation}
+低速级大齿轮到箱体内壁距离$\Delta=10mm$，两齿轮端面间距c=10mm，轴承距内壁s=10mm，则
+\begin{equation}
+l7=B+s+\Delta_2+2=25+10+10+2=47mm
+\end{equation}
+\begin{equation}
+l6=b2+c+Δ2+s+3-l5-s1=56+10+12+10+3-10-22=57mm
+\end{equation}
+
+% 高速轴的结构和装配关系见图 9.20 和图 9.21。
+
+% \begin{figure}[htbp]
+%   \centering
+%   \framebox{\parbox{0.8\textwidth}{\centering
+%     \vspace{2cm}
+%     \textbf{图 9.20 / 9.21 占位符} \\
+%     \small\textit{高速轴结构和装配关系示意图}
+%     \vspace{2cm}
+%   }}
+%   \caption{高速轴结构与装配示意图}
+% \end{figure}
+
+\subsection{轴强度校核}
+
+\subsubsection{中间轴强度校核：按弯扭合成}
+
+首先计算作用在轴上的力和力矩。
+
+\textbf{大齿轮受力：}
+\begin{itemize}
+    \item 圆周力 $F_{t2} = F_{t1} = \frac{2T_{I}}{d_{1}} = 3531.5\,\mathrm{N}$
+    \item 径向力 $F_{r2} = F_{r1} = \frac{F_{t1}\tan{\alpha_{n1}}}{\cos{\beta_1}} = 1334.1\,\mathrm{N}$
+    \item 轴向力 $F_{a2} = F_{a1} = F_{t1}\tan{\beta_1} = 981.4\,\mathrm{N}$
+\end{itemize}
+
+\textbf{小齿轮受力：}
+\begin{itemize}
+    \item 圆周力 $F_{t3} = \frac{2T_{II}}{d_{3}} = 10171.8\,\mathrm{N}$
+    \item 径向力 $F_{r3} = \frac{F_{t3}\tan{\alpha_{n3}}}{\cos{\beta_3}} = 3843.6\,\mathrm{N}$
+    \item 轴向力 $F_{a3} = F_{t3} \tan \beta_3 = 2838.1\,\mathrm{N}$
+\end{itemize}
+
+然后校核中间轴的强度。
+
+\paragraph{水平平面支反力：}
+\[ R_{AH} = 2233\,\mathrm{N}, \quad R_{DH} = 276.5\,\mathrm{N} \]
+
+\paragraph{垂直平面支反力：}
+\[ R_{AV} = 7797.7\,\mathrm{N}, \quad R_{DV} = 5909.6\,\mathrm{N} \]
+
+\paragraph{水平平面弯矩：}
+\[ M_{BH} = -138446\,\mathrm{N \cdot mm}, \quad M_{CH} = -13624.5\,\mathrm{N \cdot mm} \]
+
+\paragraph{垂直平面弯矩：}
+\[ M_{BV1} = -483457.4\,\mathrm{N \cdot mm}, \quad M_{BV2} = -695605.375\,\mathrm{N \cdot mm} \]
+\[ M_{CV1} = -291602.373\,\mathrm{N \cdot mm}, \quad M_{CV2} = -511612.625\,\mathrm{N \cdot mm} \]
+
+\paragraph{合成弯矩：}
+\[ M_{B1} = 502890\,\mathrm{N \cdot mm}, \quad M_{B2} = 695738.8\,\mathrm{N \cdot mm} \]
+\[ M_{C1} = 322799.07\,\mathrm{N \cdot mm}, \quad M_{C2} = 511794\,\mathrm{N \cdot mm} \]
+
+\paragraph{扭矩：}
+\[ T = 380170\,\mathrm{N \cdot mm} \]
+
+\paragraph{计算弯矩：}
+\[ M_{caB1} = 552203.7\,\mathrm{N \cdot mm}, \quad M_{caB2} = 732176.9\,\mathrm{N \cdot mm} \]
+\[ M_{caC1} = 395259.1\,\mathrm{N \cdot mm}, \quad M_{caC2} = 560324.6\,\mathrm{N \cdot mm} \]
+
+\paragraph{绘制弯矩、扭矩图：}
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.3\textwidth, page=1]{轴.pdf}
+    \caption{中间轴}
+    \label{fig:中间轴}
+\end{figure}
+
+\paragraph{危险截面应力校核：}
+轴材料为 45 钢，经调质处理，$[\sigma_{-1}] = 60\mathrm{MPa}$。B剖面弯矩最大，$d_{B}=67.25\,\mathrm{mm}$；C剖面直径偏小，$d_{C}=65\,\mathrm{mm}$，弯矩次大。则有：
+
+\[ \sigma_{caB} = \frac{M_{caB}}{W} = \frac{732176.9}{0.1 \times 67.25^{3}} = 24.07\,\mathrm{MPa} < [\sigma_{-1}] \]
+
+又有：
+\[ \sigma_{caC} = \frac{M_{caC}}{W} = \frac{560324.6}{0.1 \times 65^{3}} = 20.4\,\mathrm{MPa} < [\sigma_{-1}] \]
+
+故安全，最大应力出现在弯矩最大的直径较大处。
+
+% \subsubsection{按精确法校核轴的疲劳强度}
+
+% \subsubsection{1) 弯矩及弯曲应力。}
+% 近似认为 II-II 截面处的弯矩等于两侧弯矩峰值的平均值，即：
+% \begin{equation}
+% M = \frac{1\,140\,575.59 + 744\,084.96}{2} = 942\,330.27\,\mathrm{N \cdot mm}
+% \end{equation}
+
+% 抗弯剖面模量为 0.1，则：
+% \[ W \approx 0.1d^{3} = 0.1 \times 65^{3} = 27\,462.50\,\mathrm{mm}^{3} \]
+
+% 弯曲应力：
+% \[ \sigma_{b} = \frac{M}{W} = 34.31\,\mathrm{MPa} \]
+
+% 因为弯曲应力为对称循环，因此其应力幅：
+% \[ \sigma_{a} = \sigma_{b} = 34.31\,\mathrm{MPa} \]
+
+% 平均应力：
+% \[ \sigma_{m} = 0\,\mathrm{MPa} \]
+
+% \subsubsection{2) 转矩及扭转应力。}
+% 转矩：
+% \[ T = T_{II} = 811\,440\,\mathrm{N \cdot mm} \]
+
+% 抗扭剖面模量：
+% \[ W_{T} \approx 0.2d^{3} = 0.2 \times 65^{3} = 54\,925\,\mathrm{mm}^{3} \]
+
+% 扭转剪应力：
+% \[ \tau_{T} = \frac{T}{W_{T}} = 14.77\,\mathrm{MPa} \]
+
+% 因为扭转应力为脉动循环，因此其应力的均值和幅值为：
+% \[ \tau_{a} = \tau_{m} = \frac{1}{2}\tau_{T} = 7.39\,\mathrm{MPa} \]
+% (注：原文计算结果为 9.39MPa 可能有误，此处按 $14.77/2 = 7.385$ 修正显示，后续计算沿用修正后数值或保持逻辑一致性。根据后文 $S_\tau$ 计算中代入的数值 $3.80 \times 7.39$，推断此处应为 7.39 MPa)。
+
+% \subsubsection{3) 各项系数。}
+% 过盈配合处的有效应力集中系数由教材或设计手册中查得。查表 2.2 可求得过盈配合 H7/r6。由图 2.5 和图 2.6 查得尺寸系数 $\epsilon_{\sigma}=0.70, \epsilon_{\tau}=0.70$。表面质量系数，精车加工 $\beta_{\sigma}=\beta_{\tau}=0.88$。轴未经表面强化处理，故强化系数 $\beta_{q}=1$。
+
+% 弯曲疲劳极限的综合影响系数为：
+% \[ K_{\sigma} = \left(\frac{k_{\sigma}}{\epsilon_{\sigma}} + \frac{1}{\beta_{\sigma}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+
+% 扭转疲劳极限的综合影响系数为：
+% \[ K_{\tau} = \left(\frac{k_{\tau}}{\epsilon_{\tau}} + \frac{1}{\beta_{\tau}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+% (注：此处数值沿用原文，假设 $k_\sigma/\epsilon_\sigma$ 计算结果约为 3.66)。
+
+% 材料特性系数，对碳钢 $\psi_{\sigma}=0.1 \sim 0.2$，取 $\psi_{\sigma}=0.1, \psi_{\tau}=0.05$。
+
+% \subsubsection{4) 计算安全系数。}
+% 按式 (2.13) 得：
+% \begin{equation}
+% S_{\sigma} = \frac{\sigma_{-1}}{K_{\sigma}\sigma_{a} + \psi_{\sigma}\sigma_{m}} = \frac{300}{3.80 \times 34.31 + 0.1 \times 0} = 2.30
+% \end{equation}
+
+% \begin{equation}
+% S_{\tau} = \frac{\tau_{-1}}{K_{\tau}\tau_{a} + \psi_{\tau}\tau_{m}} = \frac{155}{3.80 \times 7.39 + 0.05 \times 7.39} = 5.45
+% \end{equation}
+
+% \begin{equation}
+% S_{ca} = \frac{S_{\sigma}S_{\tau}}{\sqrt{S_{\sigma}^{2} + S_{\tau}^{2}}} = \frac{2.30 \times 5.45}{\sqrt{2.30^{2} + 5.45^{2}}} = 2.12 > S = 1.5
+% \end{equation}
+
+% \textbf{答：} 安全。
+
+% 其他剖面计算方法与剖面 II-II 相类似，计算过程从略，结果安全。可见精确校核计算表明：轴的疲劳强度是足够的。
+
+\subsubsection{中间轴轴承校核}
+\paragraph{轴上径向、轴向载荷分析}
+由轴向力 $F_{a2} = 981.4\,\text{N}$ 和 $F_{a3} = 2838.1\,\text{N}$ 得
+\begin{equation}
+    F_a = F_{a3} - F_{a2} = 1856.7\,\text{N}
+\end{equation}
+由 $R_{AH} = 2233\,\text{N}, R_{AV} = 7797.7\,\text{N}$ 得
+\begin{equation}
+    R_A = \sqrt{{R_{AH}}^2 + {R_{AV}}^2} = \sqrt{2233^2 + 7797.7^2} = 8111.1\,\text{N}
+\end{equation}
+由 $R_{DH} = 276.5\,\text{N}, R_{DV} = 5909.6\,\text{N}$ 得
+\begin{equation}
+    R_D = \sqrt{{R_{DH}}^2 + {R_{DV}}^2} = \sqrt{276.5^2 + 5909.6^2} = 5916.1\,\text{N}
+\end{equation}
+中间轴受力如图
+\begin{figure}[h!] 
+    \centering 
+    
+    \includegraphics[width=0.3\textwidth, page=4]{轴.pdf}
+    \caption{中间轴轴承}
+    \label{fig:中间轴轴承}
+\end{figure}
+
+
+\paragraph{轴承选型与安装}
+选用代号为 \textbf{30212} 的圆锥滚子轴承，采用正装安装方式。轴承参数如下：\\
+内径 $d=60\,\text{mm}$，外径 $D=110\,\text{mm}, T=23.75\,\text{mm}, B=22\,\text{mm},  a=22.4\,\text{mm}, e=0.4, Y=1.5, C_r=97.8\,\text{kN}, C_{or}=74.5\,\text{kN}$。
+
+\paragraph{轴承内部轴向力与轴承载荷计算}
+计算派生轴向力
+\begin{equation}
+    S_A = \frac{R_A}{2Y} = 2703.7\,\text{N}, \quad S_D = \frac{R_D}{2Y} = 1972\,\text{N}
+\end{equation}
+因为 $S_A + F_a > S_D$，所以
+\begin{equation}
+    A_A = S_A = 2703.7\,\text{N}, \quad A_D = S_A + F_a = 3828.7\,\text{N}
+\end{equation}
+
+\paragraph{轴承当量载荷计算}
+因为 $\frac{A_A}{R_A} = 0.313 < e = 0.4, X_A = 1, Y_A = 0$; $\frac{A_D}{R_D} = 0.65 > e = 0.4, X_D = 0.4, Y_D = 1.5$，则
+\begin{equation}
+    \begin{aligned}
+        P_A &= X_A R_A + Y_A A_A = 8111.1\,\text{N} \\
+        P_D &= X_D R_D + Y_D A_D = 8109.5\,\text{N}
+    \end{aligned}
+\end{equation}
+
+\paragraph{轴承寿命校核}
+由于 $P_A > P_D$，按轴承 A 验算寿命
+\begin{equation}
+    L_h = \frac{10^6}{60n} \left(\frac{C}{P_A}\right)^{10/3} = \frac{10^6}{60 \times 123.08} \left(\frac{97800}{8111.1}\right)^{10/3} = 544325\,\text{h} > 15000\,\text{h}
+\end{equation}
+因此初选的轴承 \textbf{30212} 满足使用寿命的要求。
+
+\subsubsection{高速轴强度校核：按弯扭合成}
+
+首先计算作用在轴上的力和力矩。
+
+\textbf{小齿轮受力：}
+\begin{itemize}
+    \item 圆周力 $F_{t1} = \frac{2T_{I}}{d_{1}} = 3531.5\,\mathrm{N}$
+    \item 径向力 $F_{r1} = \frac{F_{t1}\tan{\alpha_{n1}}}{\cos{\beta_1}} = 1334.1\,\mathrm{N}$
+    \item 轴向力 $F_{a1} = F_{t1}\tan{\beta_1} = 981.4\,\mathrm{N}$
+\end{itemize}
+
+然后校核中间轴的强度。
+
+\paragraph{水平平面支反力：}
+\[ R_{AH} = 349.4\,\mathrm{N}, \quad R_{DH} = 984.7\,\mathrm{N} \]
+
+\paragraph{垂直平面支反力：}
+\[ R_{AV} = -1183.6\,\mathrm{N}, \quad R_{DV} = -2347.9\,\mathrm{N} \]
+
+\paragraph{水平平面弯矩：}
+\[ M_{CH} = 48741.3\,\mathrm{N \cdot mm} \]
+
+\paragraph{垂直平面弯矩：}
+\[ M_{CV1} = 165112.2\,\mathrm{N \cdot mm}, \quad M_{CV2} = 116221.05\,\mathrm{N \cdot mm} \]
+
+\paragraph{合成弯矩：}
+\[ M_{C1} = 172156.2\,\mathrm{N \cdot mm}, \quad M_{C2} = 126028\,\mathrm{N \cdot mm} \]
+
+\paragraph{扭矩：}
+\[ T = 87970\,\mathrm{N \cdot mm} \]
+
+\paragraph{计算弯矩：}
+\[ M_{caC1} = 180065.8\,\mathrm{N \cdot mm}, \quad M_{caC2} = 136634.5\,\mathrm{N \cdot mm} \]
+
+\paragraph{绘制弯矩、扭矩图：}
+\begin{figure}[h!] 
+    \centering 
+    
+    \includegraphics[width=0.3\textwidth, page=2]{轴.pdf}
+    \caption{高速轴}
+    \label{fig:高速轴}
+\end{figure}
+
+\paragraph{危险截面应力校核：}
+轴材料为 45 钢，经调质处理，$[\sigma_{-1}] = 60\mathrm{MPa}$。C剖面弯矩最大，$d_{C}=44.82\,\mathrm{mm}$，则有：
+
+\[ \sigma_{caC} = \frac{M_{caC}}{W} = \frac{180065.8}{0.1 \times 44.82^{3}} = 20\,\mathrm{MPa} < [\sigma_{-1}] \]
+
+故安全。
+
+% \subsubsection{按精确法校核轴的疲劳强度}
+
+% 由图 9.23 中的弯矩图和转矩图可知，受载最大的剖面为 B 和 C。虽然剖面 B 上的计算弯矩最大，但该处的直径较大，且无显著的应力集中。从应力集中对轴的疲劳强度的影响来看，剖面 C、II-II 处直径较小，且过盈配合引起的应力集中在 II-II 处最严重，且该处弯矩大于 C 处，因此只对剖面 II-II 的疲劳强度进行精确校核。
+
+% \subsubsection{1) 弯矩及弯曲应力。}
+% 近似认为 II-II 截面处的弯矩等于两侧弯矩峰值的平均值，即：
+% \begin{equation}
+% M = \frac{1\,140\,575.59 + 744\,084.96}{2} = 942\,330.27\,\mathrm{N \cdot mm}
+% \end{equation}
+
+% 抗弯剖面模量为 0.1，则：
+% \[ W \approx 0.1d^{3} = 0.1 \times 65^{3} = 27\,462.50\,\mathrm{mm}^{3} \]
+
+% 弯曲应力：
+% \[ \sigma_{b} = \frac{M}{W} = 34.31\,\mathrm{MPa} \]
+
+% 因为弯曲应力为对称循环，因此其应力幅：
+% \[ \sigma_{a} = \sigma_{b} = 34.31\,\mathrm{MPa} \]
+
+% 平均应力：
+% \[ \sigma_{m} = 0\,\mathrm{MPa} \]
+
+% \subsubsection{2) 转矩及扭转应力。}
+% 转矩：
+% \[ T = T_{II} = 811\,440\,\mathrm{N \cdot mm} \]
+
+% 抗扭剖面模量：
+% \[ W_{T} \approx 0.2d^{3} = 0.2 \times 65^{3} = 54\,925\,\mathrm{mm}^{3} \]
+
+% 扭转剪应力：
+% \[ \tau_{T} = \frac{T}{W_{T}} = 14.77\,\mathrm{MPa} \]
+
+% 因为扭转应力为脉动循环，因此其应力的均值和幅值为：
+% \[ \tau_{a} = \tau_{m} = \frac{1}{2}\tau_{T} = 7.39\,\mathrm{MPa} \]
+% (注：原文计算结果为 9.39MPa 可能有误，此处按 $14.77/2 = 7.385$ 修正显示，后续计算沿用修正后数值或保持逻辑一致性。根据后文 $S_\tau$ 计算中代入的数值 $3.80 \times 7.39$，推断此处应为 7.39 MPa)。
+
+% \subsubsection{3) 各项系数。}
+% 过盈配合处的有效应力集中系数由教材或设计手册中查得。查表 2.2 可求得过盈配合 H7/r6。由图 2.5 和图 2.6 查得尺寸系数 $\epsilon_{\sigma}=0.70, \epsilon_{\tau}=0.70$。表面质量系数，精车加工 $\beta_{\sigma}=\beta_{\tau}=0.88$。轴未经表面强化处理，故强化系数 $\beta_{q}=1$。
+
+% 弯曲疲劳极限的综合影响系数为：
+% \[ K_{\sigma} = \left(\frac{k_{\sigma}}{\epsilon_{\sigma}} + \frac{1}{\beta_{\sigma}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+
+% 扭转疲劳极限的综合影响系数为：
+% \[ K_{\tau} = \left(\frac{k_{\tau}}{\epsilon_{\tau}} + \frac{1}{\beta_{\tau}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+% (注：此处数值沿用原文，假设 $k_\sigma/\epsilon_\sigma$ 计算结果约为 3.66)。
+
+% 材料特性系数，对碳钢 $\psi_{\sigma}=0.1 \sim 0.2$，取 $\psi_{\sigma}=0.1, \psi_{\tau}=0.05$。
+
+% \subsubsection{4) 计算安全系数。}
+% 按式 (2.13) 得：
+% \begin{equation}
+% S_{\sigma} = \frac{\sigma_{-1}}{K_{\sigma}\sigma_{a} + \psi_{\sigma}\sigma_{m}} = \frac{300}{3.80 \times 34.31 + 0.1 \times 0} = 2.30
+% \end{equation}
+
+% \begin{equation}
+% S_{\tau} = \frac{\tau_{-1}}{K_{\tau}\tau_{a} + \psi_{\tau}\tau_{m}} = \frac{155}{3.80 \times 7.39 + 0.05 \times 7.39} = 5.45
+% \end{equation}
+
+% \begin{equation}
+% S_{ca} = \frac{S_{\sigma}S_{\tau}}{\sqrt{S_{\sigma}^{2} + S_{\tau}^{2}}} = \frac{2.30 \times 5.45}{\sqrt{2.30^{2} + 5.45^{2}}} = 2.12 > S = 1.5
+% \end{equation}
+
+% \textbf{答：} 安全。
+
+% 其他剖面计算方法与剖面 II-II 相类似，计算过程从略，结果安全。可见精确校核计算表明：轴的疲劳强度是足够的。
+
+\subsubsection{高速轴轴承校核}
+\paragraph{轴上径向、轴向载荷分析}
+由轴向力 $F_{a1} = 981.4\,\text{N}$得
+\begin{equation}
+    F_a = F_{a1} = 981.4\,\text{N}
+\end{equation}
+由 $R_{AH} = 349.4\,\text{N}, R_{AV} = 1183.6\,\text{N}$ 得
+\begin{equation}
+    R_A = \sqrt{{R_{AH}}^2 + {R_{AV}}^2} = \sqrt{349.4^2 + 1183.6^2} = 1234.1\,\text{N}
+\end{equation}
+由 $R_{DH} = 984.7\,\text{N}, R_{DV} = 2347.9\,\text{N}$ 得
+\begin{equation}
+    R_D = \sqrt{{R_{DH}}^2 + {R_{DV}}^2} = \sqrt{984.7^2 + 2347.9^2} = 2546\,\text{N}
+\end{equation}
+中间轴受力如图
+\begin{figure}[h!] 
+    \centering 
+    
+    \includegraphics[width=0.3\textwidth, page=4]{轴.pdf}
+    \caption{高速轴轴承}
+    \label{fig:高速轴轴承}
+\end{figure}
+
+
+\paragraph{轴承选型与安装}
+选用代号为 \textbf{30209} 的圆锥滚子轴承，采用正装安装方式。轴承参数如下：\\
+内径 $d=45\,\text{mm}$，外径 $D=85\,\text{mm}, T=20.75\,\text{mm}, B=19\,\text{mm},  a=18.6\,\text{mm}, e=0.4, Y=1.5, C_r=64.2\,\text{kN}, C_{or}=47.8\,\text{kN}$。
+
+\paragraph{轴承内部轴向力与轴承载荷计算}
+计算派生轴向力
+\begin{equation}
+    S_A = \frac{R_A}{2Y} = 411.4\,\text{N}, \quad S_D = \frac{R_D}{2Y} = 848.7\,\text{N}
+\end{equation}
+因为 $S_A + F_a > S_D$，所以
+\begin{equation}
+    A_A = S_A = 411.4\,\text{N}, \quad A_D = S_A + F_a = 1392.8\,\text{N}
+\end{equation}
+
+\paragraph{轴承当量载荷计算}
+因为 $\frac{A_A}{R_A} = 0.33 < e = 0.4, X_A = 1, Y_A = 0$; $\frac{A_D}{R_D} = 0.55 > e = 0.4, X_D = 0.4, Y_D = 1.5$，则
+\begin{equation}
+    \begin{aligned}
+        P_A &= X_A R_A + Y_A A_A = 1234.1\,\text{N} \\
+        P_D &= X_D R_D + Y_D A_D = 3107.6\,\text{N}
+    \end{aligned}
+\end{equation}
+
+\paragraph{轴承寿命校核}
+由于 $P_A < P_D$，按轴承 D 验算寿命
+\begin{equation}
+    L_h = \frac{10^6}{60n} \left(\frac{C}{P_D}\right)^{10/3} = \frac{10^6}{60 \times 553.85} \left(\frac{64200}{3107.6}\right)^{10/3} = 728042\,\text{h} > 15000\,\text{h}
+\end{equation}
+因此初选的轴承 \textbf{30209} 满足使用寿命的要求。
+
+\subsubsection{低速轴强度校核：按弯扭合成}
+
+
+首先计算作用在轴上的力和力矩。
+
+\textbf{大齿轮受力：}
+\begin{itemize}
+    \item 圆周力 $F_{t4} = F_{t3} = \frac{2T_{II}}{d_{3}} = 10171.8\,\mathrm{N}$
+    \item 径向力 $F_{r4} = F_{r3} = \frac{F_{t3}\tan{\alpha_{n3}}}{\cos{\beta_3}} = 3843.6\,\mathrm{N}$
+    \item 轴向力 $F_{a4} = F_{t4} \tan \beta_3 = 2838.1\,\mathrm{N}$
+\end{itemize}
+
+然后校核中间轴的强度。
+
+\paragraph{水平平面支反力：}
+\[ R_{AH} = 2569.2\,\mathrm{N}, \quad R_{DH} = 1274.4\,\mathrm{N} \]
+
+\paragraph{垂直平面支反力：}
+\[ R_{AV} = -3235.1\,\mathrm{N}, \quad R_{DV} = -6936.7\,\mathrm{N} \]
+
+\paragraph{水平平面弯矩：}
+\[ M_{CH} = 160575\,\mathrm{N \cdot mm} \]
+
+\paragraph{垂直平面弯矩：}
+\[ M_{BV1} = 202193.75\,\mathrm{N \cdot mm}, \quad M_{BV2} = 874024.2\,\mathrm{N \cdot mm} \]
+
+\paragraph{合成弯矩：}
+\[ M_{B1} = 258198.8\,\mathrm{N \cdot mm}, \quad M_{B2} = 888652.1\,\mathrm{N \cdot mm} \]
+
+\paragraph{扭矩：}
+\[ T = 1150140\,\mathrm{N \cdot mm} \]
+
+\paragraph{计算弯矩：}
+\[ M_{caB1} = 736805.6\,\mathrm{N \cdot mm}, \quad M_{caB2} = 1125130\,\mathrm{N \cdot mm} \]
+
+\paragraph{绘制弯矩、扭矩图：}
+\begin{figure}[h!] 
+    \centering 
+    
+    \includegraphics[width=0.3\textwidth, page=3]{轴.pdf}
+    \caption{低速轴}
+    \label{fig:低速轴}
+\end{figure}
+
+\paragraph{危险截面应力校核：}
+轴材料为 45 钢，经调质处理，$[\sigma_{-1}] = 60\mathrm{MPa}$。B剖面弯矩最大，$d_{B}=80\,\mathrm{mm}$，则有：
+
+\[ \sigma_{caB} = \frac{M_{caB}}{W} = \frac{1125130}{0.1 \times 80^{3}} = 21.98\,\mathrm{MPa} < [\sigma_{-1}] \]
+
+故安全。
+
+% \subsubsection{按精确法校核轴的疲劳强度}
+
+% 由图 9.23 中的弯矩图和转矩图可知，受载最大的剖面为 B 和 C。虽然剖面 B 上的计算弯矩最大，但该处的直径较大，且无显著的应力集中。从应力集中对轴的疲劳强度的影响来看，剖面 C、II-II 处直径较小，且过盈配合引起的应力集中在 II-II 处最严重，且该处弯矩大于 C 处，因此只对剖面 II-II 的疲劳强度进行精确校核。
+
+% \subsubsection{1) 弯矩及弯曲应力。}
+% 近似认为 II-II 截面处的弯矩等于两侧弯矩峰值的平均值，即：
+% \begin{equation}
+% M = \frac{1\,140\,575.59 + 744\,084.96}{2} = 942\,330.27\,\mathrm{N \cdot mm}
+% \end{equation}
+
+% 抗弯剖面模量为 0.1，则：
+% \[ W \approx 0.1d^{3} = 0.1 \times 65^{3} = 27\,462.50\,\mathrm{mm}^{3} \]
+
+% 弯曲应力：
+% \[ \sigma_{b} = \frac{M}{W} = 34.31\,\mathrm{MPa} \]
+
+% 因为弯曲应力为对称循环，因此其应力幅：
+% \[ \sigma_{a} = \sigma_{b} = 34.31\,\mathrm{MPa} \]
+
+% 平均应力：
+% \[ \sigma_{m} = 0\,\mathrm{MPa} \]
+
+% \subsubsection{2) 转矩及扭转应力。}
+% 转矩：
+% \[ T = T_{II} = 811\,440\,\mathrm{N \cdot mm} \]
+
+% 抗扭剖面模量：
+% \[ W_{T} \approx 0.2d^{3} = 0.2 \times 65^{3} = 54\,925\,\mathrm{mm}^{3} \]
+
+% 扭转剪应力：
+% \[ \tau_{T} = \frac{T}{W_{T}} = 14.77\,\mathrm{MPa} \]
+
+% 因为扭转应力为脉动循环，因此其应力的均值和幅值为：
+% \[ \tau_{a} = \tau_{m} = \frac{1}{2}\tau_{T} = 7.39\,\mathrm{MPa} \]
+% (注：原文计算结果为 9.39MPa 可能有误，此处按 $14.77/2 = 7.385$ 修正显示，后续计算沿用修正后数值或保持逻辑一致性。根据后文 $S_\tau$ 计算中代入的数值 $3.80 \times 7.39$，推断此处应为 7.39 MPa)。
+
+% \subsubsection{3) 各项系数。}
+% 过盈配合处的有效应力集中系数由教材或设计手册中查得。查表 2.2 可求得过盈配合 H7/r6。由图 2.5 和图 2.6 查得尺寸系数 $\epsilon_{\sigma}=0.70, \epsilon_{\tau}=0.70$。表面质量系数，精车加工 $\beta_{\sigma}=\beta_{\tau}=0.88$。轴未经表面强化处理，故强化系数 $\beta_{q}=1$。
+
+% 弯曲疲劳极限的综合影响系数为：
+% \[ K_{\sigma} = \left(\frac{k_{\sigma}}{\epsilon_{\sigma}} + \frac{1}{\beta_{\sigma}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+
+% 扭转疲劳极限的综合影响系数为：
+% \[ K_{\tau} = \left(\frac{k_{\tau}}{\epsilon_{\tau}} + \frac{1}{\beta_{\tau}} - 1\right)\frac{1}{\beta_{q}} = 3.66 + \frac{1}{0.88} - 1 = 3.80 \]
+% (注：此处数值沿用原文，假设 $k_\sigma/\epsilon_\sigma$ 计算结果约为 3.66)。
+
+% 材料特性系数，对碳钢 $\psi_{\sigma}=0.1 \sim 0.2$，取 $\psi_{\sigma}=0.1, \psi_{\tau}=0.05$。
+
+% \subsubsection{4) 计算安全系数。}
+% 按式 (2.13) 得：
+% \begin{equation}
+% S_{\sigma} = \frac{\sigma_{-1}}{K_{\sigma}\sigma_{a} + \psi_{\sigma}\sigma_{m}} = \frac{300}{3.80 \times 34.31 + 0.1 \times 0} = 2.30
+% \end{equation}
+
+% \begin{equation}
+% S_{\tau} = \frac{\tau_{-1}}{K_{\tau}\tau_{a} + \psi_{\tau}\tau_{m}} = \frac{155}{3.80 \times 7.39 + 0.05 \times 7.39} = 5.45
+% \end{equation}
+
+% \begin{equation}
+% S_{ca} = \frac{S_{\sigma}S_{\tau}}{\sqrt{S_{\sigma}^{2} + S_{\tau}^{2}}} = \frac{2.30 \times 5.45}{\sqrt{2.30^{2} + 5.45^{2}}} = 2.12 > S = 1.5
+% \end{equation}
+
+% \textbf{答：} 安全。
+
+% 其他剖面计算方法与剖面 II-II 相类似，计算过程从略，结果安全。可见精确校核计算表明：轴的疲劳强度是足够的。
+
+\subsubsection{低速轴轴承校核}
+\paragraph{轴上径向、轴向载荷分析}
+由轴向力 $F_{a4} = 3838.1 \,\text{N}$得
+\begin{equation}
+    F_a = F_{a4} = 3838.1\,\text{N}
+\end{equation}
+由 $R_{AH} = 2569.2\,\text{N}, R_{AV} = 3235.1\,\text{N}$ 得
+\begin{equation}
+    R_A = \sqrt{{R_{AH}}^2 + {R_{AV}}^2} = \sqrt{2569.2^2 + 3235.1^2} = 4131.2\,\text{N}
+\end{equation}
+由 $R_{DH} = 1274.4 \,\text{N}, R_{DV} = 6936.7\,\text{N}$ 得
+\begin{equation}
+    R_D = \sqrt{{R_{DH}}^2 + {R_{DV}}^2} = \sqrt{1274.4^2 + 6936.7^2} = 7052.7\,\text{N}
+\end{equation}
+中间轴受力如图
+\begin{figure}[h!] 
+    \centering 
+    
+    \includegraphics[width=0.3\textwidth, page=4]{轴.pdf}
+    \caption{低速轴轴承}
+    \label{fig:低速轴轴承}
+\end{figure}
+
+
+\paragraph{轴承选型与安装}% 改轴承，尺寸
+选用代号为 \textbf{30215} 的圆锥滚子轴承，采用正装安装方式。轴承参数如下：\\
+内径 $d=75\,\text{mm}$，外径 $D=130\,\text{mm}, T = 27.25\,\text{mm}, \,\text{mm}, B=25\,\text{mm},  a=27.4\,\text{mm}, e=0.44, Y=1.4, C_r=130\,\text{kN}, C_{or}=105\,\text{kN}$。
+
+\paragraph{轴承内部轴向力与轴承载荷计算}
+计算派生轴向力
+\begin{equation}
+    S_A = \frac{R_A}{2Y} = 1475.4\,\text{N}, \quad S_D = \frac{R_D}{2Y} = 2518.8\,\text{N}
+\end{equation}
+因为 $S_A + F_a > S_D$，所以
+\begin{equation}
+    A_A = S_A = 1475.4\,\text{N}, \quad A_D = S_A + F_a = 5313.5\,\text{N}
+\end{equation}
+
+\paragraph{轴承当量载荷计算}
+因为 $\frac{A_A}{R_A} = 0.36 < e = 0.44, X_A = 1, Y_A = 0$; $\frac{A_D}{R_D} = 0.75 > e = 0.4, X_D = 0.4, Y_D = 1.4$，则
+\begin{equation}
+    \begin{aligned}
+        P_A &= X_A R_A + Y_A A_A = 4131.2\,\text{N} \\
+        P_D &= X_D R_D + Y_D A_D = 10260\,\text{N}
+    \end{aligned}
+\end{equation}
+
+\paragraph{轴承寿命校核}
+由于 $P_A < P_D$，按轴承 D 验算寿命
+\begin{equation}
+    L_h = \frac{10^6}{60n} \left(\frac{C}{P_A}\right)^{10/3} = \frac{10^6}{60 \times 39.07} \left(\frac{130000}{10260}\right)^{10/3} = 2022980\,\text{h} > 15000\,\text{h}
+\end{equation}
+因此初选的轴承 \textbf{30215} 满足使用寿命的要求。
+
+\section{键设计}
+\subsection{高速轴与大带轮间轴}
+
+\begin{enumerate}
+    \item[(1)] \textbf{选择键的类型} \quad 因蜗轮工作时对中性要求较高，故选 A 型普通平键
+    \item[(2)] \textbf{确定键的尺寸} \quad 根据题意，由附录E查得：键宽 $b=10\text{mm}$，键高 $h=8\text{mm}$，键长 $L=70\text{mm}$
+    \item[(3)] \textbf{校核挤压强度} \quad 许用挤压应力 $[\sigma_p] = 110\text{MPa}$
+\end{enumerate}
+
+\subsubsection{转矩}
+\begin{equation}
+    T = 9.55 \times 10^6 P/n = 9.55 \times 10^6 \times \frac{5.1015}{553.85} = 87970 \text{ N} \cdot \text{mm}
+\end{equation}
+
+\subsubsection{键工作长度}
+\begin{equation}
+    l = L - b = (70 - 10) \, \text{mm} = 60 \, \text{mm}
+\end{equation}
+
+\subsubsection{键与键槽的工作高度}
+\begin{equation}
+    k = h/2 = 8/2 \, \text{mm} = 4 \, \text{mm}
+\end{equation}
+
+\subsubsection{挤压应力} 
+\begin{equation}
+\begin{aligned}
+    \sigma_p &= \frac{2T}{kld} = \frac{2 \times 87970}{4 \times 60 \times 35} \, \text{MPa} \\
+             &= 20.9 \, \text{MPa} < [\sigma_p]\, \text{MPa}
+\end{aligned}
+\end{equation}
+
+结论：键连接满足强度条件
+
+\subsection{中间轴与大齿轮间轴}
+\begin{enumerate}
+    \item[(1)] \textbf{选择键的类型} \quad 因蜗轮工作时对中性要求较高，故选 A 型普通平键
+    \item[(2)] \textbf{确定键的尺寸} \quad 根据题意，由附录E查得：键宽 $b=20\text{mm}$，键高 $h=12\text{mm}$，键长 $L=40\text{mm}$
+    \item[(3)] \textbf{校核挤压强度} \quad 许用挤压应力 $[\sigma_p] = 110\text{MPa}$
+\end{enumerate}
+
+\subsubsection{转矩}
+\begin{equation}
+    T = 9.55 \times 10^6 P/n = 9.55 \times 10^6 \times \frac{4.8995}{123.08} = 380170 \text{ N} \cdot \text{mm}
+\end{equation}
+
+\subsubsection{键工作长度}
+\begin{equation}
+    l = L - b = (40 - 20) \, \text{mm} = 20 \, \text{mm}
+\end{equation}
+
+\subsubsection{键与键槽的工作高度}
+\begin{equation}
+    k = h/2 = 12/2 \, \text{mm} = 6 \, \text{mm}
+\end{equation}
+
+\subsubsection{挤压应力} 
+\begin{equation}
+\begin{aligned}
+    \sigma_p &= \frac{2T}{kld} = \frac{2 \times 380170}{6 \times 20 \times 65} \, \text{MPa} \\
+             &= 97.5 \, \text{MPa} < [\sigma_p]\, \text{MPa}
+\end{aligned}
+\end{equation}
+
+结论：键连接满足强度条件
+
+\subsection{低速轴与大齿轮间轴}
+\begin{enumerate}
+    \item[(1)] \textbf{选择键的类型} \quad 因蜗轮工作时对中性要求较高，故选 A 型普通平键
+    \item[(2)] \textbf{确定键的尺寸} \quad 根据题意，由附录E查得：键宽 $b=22\text{mm}$，键高 $h=14\text{mm}$，键长 $L=70\text{mm}$
+    \item[(3)] \textbf{校核挤压强度} \quad 许用挤压应力 $[\sigma_p] = 110\text{MPa}$
+\end{enumerate}
+
+\subsubsection{转矩}
+\begin{equation}
+    T = 9.55 \times 10^6 P/n = 9.55 \times 10^6 \times \frac{4.7055}{39.07} = 1150140 \text{ N} \cdot \text{mm}
+\end{equation}
+
+\subsubsection{键工作长度}
+\begin{equation}
+    l = L - b = (70 - 22) \, \text{mm} = 48 \, \text{mm}
+\end{equation}
+
+\subsubsection{键与键槽的工作高度}
+\begin{equation}
+    k = h/2 = 14/2 \, \text{mm} = 7 \, \text{mm}
+\end{equation}
+
+\subsubsection{挤压应力} 
+\begin{equation}
+\begin{aligned}
+    \sigma_p &= \frac{2T}{kld} = \frac{2 \times 1150140}{7 \times 48 \times 80} \, \text{MPa} \\
+             &= 85.6 \, \text{MPa} < [\sigma_p]\, \text{MPa}
+\end{aligned}
+\end{equation}
+
+结论：键连接满足强度条件
+
+\subsection{低速轴与联轴器间轴}
+\begin{enumerate}
+    \item[(1)] \textbf{选择键的类型} \quad 因蜗轮工作时对中性要求较高，故选 A 型普通平键
+    \item[(2)] \textbf{确定键的尺寸} \quad 根据题意，由附录E查得：键宽 $b=20\text{mm}$，键高 $h=12\text{mm}$，键长 $L=125\text{mm}$
+    \item[(3)] \textbf{校核挤压强度} \quad 许用挤压应力 $[\sigma_p] = 110\text{MPa}$
+\end{enumerate}
+
+\subsubsection{转矩}
+\begin{equation}
+    T = 9.55 \times 10^6 P/n = 9.55 \times 10^6 \times \frac{4.7055}{39.07} = 1150140 \text{ N} \cdot \text{mm}
+\end{equation}
+
+\subsubsection{键工作长度}
+\begin{equation}
+    l = L - b = (125 - 20) \, \text{mm} = 105 \, \text{mm}
+\end{equation}
+
+\subsubsection{键与键槽的工作高度}
+\begin{equation}
+    k = h/2 = 12/2 \, \text{mm} = 6 \, \text{mm}
+\end{equation}
+
+\subsubsection{挤压应力} 
+\begin{equation}
+\begin{aligned}
+    \sigma_p &= \frac{2T}{kld} = \frac{2 \times 1150140}{6 \times 105 \times 65} \, \text{MPa} \\
+             &= 56.2 \, \text{MPa} < [\sigma_p]
+\end{aligned}
+\end{equation}
+
+结论：键连接满足强度条件
+
+\section{联轴器选择}
+\subsection{高速轴上联轴器}
+由表查得载荷系数$K_A=1.3$，计算转矩$T_C=K_A\times T=1.3×87.97=114.36\text{ N} \cdot \text{mm}$
+
+轴伸出端安装的联轴器初选为 LX3 联轴器，其公称转矩 $T_n=1250 \, \mathrm{N \cdot m}$，许用转速 $[n]=4750 \, \mathrm{r/min}$，采用 Y 型轴孔。其中主动端孔直径 $d=35 \, \mathrm{mm}$，轴孔长度 $L=82 \, \mathrm{mm}$；从动端孔直径 $d=30 \, \mathrm{mm}$，轴孔长度 $L=82 \, \mathrm{mm}$。
+
+验算如下：
+\begin{align*}
+    T_c &= 114.36 \, \mathrm{N \cdot m} < T_n \\
+    n &= 553.85 \, \mathrm{r/min} < [n]
+\end{align*}
+满足要求。
+
+\subsection{低速轴上联轴器}
+由表查得载荷系数$K_A=1.3$，计算转矩$T_C=K_A\times T=1.3×1150.14=1495.182\text{ N} \cdot \text{mm}$
+
+轴伸出端安装的联轴器初选为 LX6 联轴器，其公称转矩 $T_n=6300 \, \mathrm{N \cdot m}$，许用转速 $[n]=2720 \, \mathrm{r/min}$，采用 Y 型轴孔。其中主动端孔直径 $d=65 \, \mathrm{mm}$，轴孔长度 $L=142 \, \mathrm{mm}$；从动端孔直径 $d=60 \, \mathrm{mm}$，轴孔长度 $L=142 \, \mathrm{mm}$。
+
+验算如下：
+\begin{align*}
+    T_c &= 1495.18 \, \mathrm{N \cdot m} < T_n \\
+    n &= 39.07 \, \mathrm{r/min} < [n]
+\end{align*}
+满足要求。
+
+\section{润滑}
+\subsection{齿轮的润滑}
+为了避免减速器工作时大齿轮搅起油池底面的沉积物，又要保证箱座有
+足够的容积存放传动所需的润滑油，由于齿轮的速度：
+\begin{equation}
+    v = \frac{\pi d_1 n}{60\times1000}=\frac{\pi\times63.53\times553.85}{60\times1000} = 1.84 \text{m/s}<12 \text{m/s}
+\end{equation}
+故齿轮采用油池浸油润滑，选用 L-CKC150润滑 油，大齿轮浸油深度约为 15mm。
+
+\subsection{轴承的润滑}
+由于齿轮圆周速度$v<2 \text{m/s}$，故轴承的润滑方式采用润滑脂润滑，选用 4号钙基润滑脂。
+
+\section{窥视孔及窥视孔盖}
+窥视孔用于检查传动件的啮合情况、润滑状态、接触斑点及齿侧间隙，还可用于注入润滑油，故窥视孔应开在便于观察齿轮啮合区的位置，其尺寸大小应便于检查。窥视孔盖可以用铸铁、钢板制成，它和箱体之间应加密封垫。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.5\textwidth]{窥视孔.png}
+    \caption{窥视孔及窥视孔盖}
+    \label{fig:窥视孔及窥视孔盖}
+\end{figure}
+
+\section{放油孔及放油螺塞}
+为排放减速器箱体内污油和便于清洗箱体内部，在箱座油池的最低处设置放油孔，箱体内底面做成斜面，向放油孔方向倾斜1°～2°，使油易于流出。选择$d = 24$的放油螺塞。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.5\textwidth]{放油螺栓.png}
+    \caption{放油螺塞}
+    \label{fig:放油螺塞}
+\end{figure}
+
+\section{油尺}
+油尺用来指示油面高度，应设置在便于检查及油面较稳定之处。本设计采用杆式油标，杆式油标结构简单，其上有刻线表示最高及最低油面。油标安置的位置不能太低，以防油溢出。其倾斜角度应便于油标座孔的加工及油标的装拆。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.3\textwidth]{油标.png}
+    \caption{油尺}
+    \label{fig:油尺}
+\end{figure}
+
+\section{通气器}
+通气器用于通气，使箱体内外气压一致，以免由于运转时箱体内温度升高，内压增大，而引起减速器润滑油的渗漏。简易的通气器钻有丁字形孔，常设置在箱顶或检查孔盖上，用于较清洁的环境。较完善的通气器具有过滤网及通气曲路，可减少灰尘进入。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.3\textwidth]{通气孔.png}
+    \caption{通气孔}
+    \label{fig:通气孔}
+\end{figure}
+
+\section{起吊装置}
+起吊装置用于拆卸及搬运减速器。它常由箱盖上的吊孔和箱座凸缘下面的吊耳构成。也可采用吊环螺钉拧入箱盖以吊小型减速器或吊起箱盖。本设计中所采用吊孔（或吊环）和吊耳的示例和尺寸如下图所示：起吊装置用于拆卸及搬运减速器。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.7\textwidth]{起吊.png}
+    \caption{起吊装置}
+    \label{fig:起吊装置}
+\end{figure}
+
+\section{起盖螺钉}
+为便于起箱盖，可在箱盖凸缘上装设2个起盖螺钉。拆卸箱盖时，可先拧动此螺钉顶起箱盖。起盖螺钉头部应为圆柱形，以免损坏螺纹。选择M10的起盖螺钉。
+
+\section{定位销}
+为保证箱体轴承孔的加工精度与装配精度，应在箱体链接凸缘上相距较远处安置两个圆锥销，并尽量放在不对称位置，以使箱座与箱盖能正确定位。为便于拆装，定位销长度应大于链接凸缘总厚度。
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.5\textwidth]{销.png}
+    \caption{定位销}
+    \label{fig:定位销}
+\end{figure}
+
+\section{设计小结}
+通过这门机械设计课程的学习，我系统掌握了二级展开式圆柱齿轮减速箱的设计与分析方法，收获显著。在亲身参与设计项目过程中，我不仅巩固了相关理论知识，也提升了实践能力与问题解决能力。
+
+首先，课程使我对机械设计的整体流程有了更为清晰的把握。从需求分析到测试验证，每个阶段都需要严谨的思考和精确的计算，使我深切感受到设计的复杂性与挑战性。尤其在齿轮选型、强度计算等环节，我学会了如何运用工程原理解决实际问题，这显著增强了我的专业素养。
+
+其次，课程的实践环节进一步加深了我对理论知识的理解。通过实际设计与应用相结合的过程，我更加明确了理论指导实践的重要性，也坚定了今后从事机械工程相关工作的信心。
+
+总之，本课程使我对机械设计的各个环节形成了较为全面的认识。我期待在今后的学习与工作中运用所学的知识与技能，持续探索这一富有创造性的领域。
+
+\section{参考文献}
+黄平——《机械设计教程——理论、方法与标准（第二版）》清华大学出版社
+
+
+
+\end{document}
