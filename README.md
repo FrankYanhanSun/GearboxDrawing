@@ -28,12 +28,12 @@
 
 `装配图.dwg`：
 <div align="center">
-    <img src="装配图.jpg" width="500">
+    <img src="装配图.jpg" width="700">
 </div>
 
 `零件图(中间轴).dwg`：
 <div align="center">
-    <img src="零件图(中间轴).jpg" width="500">
+    <img src="零件图(中间轴).jpg" width="700">
 </div>
 
 ---
