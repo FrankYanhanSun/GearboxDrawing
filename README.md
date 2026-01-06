@@ -36,6 +36,10 @@
     <img src="零件图(中间轴).jpg" width="700">
 </div>
 
+## Acknowledgement
+
+感谢b站up主天上一白的视频[机械设计课程设计/减速器设计—全流程详解](https://www.bilibili.com/video/BV1A44y197Hb/?vd_source=a416fcb6c88258170a1902d8753f0269)，帮助我完成了学校老师什么也没讲就布置的作业。看到本仓库的同学也可以去跟着学习一下。
+
 ---
 
 ## Leave a star if you like it 🥰
